@@ -1,2 +1,2 @@
 # Food_Nutrition_System_Rest_API
-Food Nutrition Rest API
+A Food Nutrition Rest API using Go-Fiber Framework, PostgreSQL, and GORM
