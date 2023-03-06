@@ -7,15 +7,15 @@ import (
 
 	"github.com/joho/godotenv"
 
-	"github.com/HasnathJami/Food-Nutrition-Go-Fiber-Gorm-Postgres-Docker/database"
-	"github.com/HasnathJami/Food-Nutrition-Go-Fiber-Gorm-Postgres-Docker/models"
-	"github.com/HasnathJami/Food-Nutrition-Go-Fiber-Gorm-Postgres-Docker/routers"
-	"github.com/HasnathJami/Food-Nutrition-Go-Fiber-Gorm-Postgres-Docker/utils"
+	"github.com/HasnathJami/Smart-Ummah/database"
+	"github.com/HasnathJami/Smart-Ummah/models"
+	"github.com/HasnathJami/Smart-Ummah/routers"
+	"github.com/HasnathJami/Smart-Ummah/utils"
 )
 
 func main() {
 	err := godotenv.Load(".env")
-	utils.CheckError(err,"")
+	utils.CheckSimpleError(err,"")
 
 	config := &models.Config{
 		Host: os.Getenv("DB_HOST"),
@@ -27,10 +27,10 @@ func main() {
 	}
 
 	db, err := database.NewConnection(config)
-	utils.CheckError(err, "Could Not Load The Database")
+	utils.CheckSimpleError(err, "Could Not Load The Database")
 
 	err = models.MigrateDatabase(db)
-	utils.CheckError(err, "Could Not Migrate The Database")
+	utils.CheckSimpleError(err, "Could Not Migrate The Database")
 
 	// var repository *models.Repository = &models.Repository{
 	// 	DB : db,

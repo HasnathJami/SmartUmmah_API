@@ -1,4 +1,4 @@
-module github.com/HasnathJami/Food-Nutrition-Go-Fiber-Gorm-Postgres-Docker
+module github.com/HasnathJami/Smart-Ummah
 
 go 1.19
 

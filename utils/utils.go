@@ -7,16 +7,38 @@ import (
 	"gorm.io/gorm"
 )
 
-func CheckError(err error, message string) {
+func CheckError(context *fiber.Ctx, err error, message string, status int) {
+	if err != nil {
+        if message != ""{
+          context.Status(status).JSON(
+			&fiber.Map{"message" : message,
+		})
+	
+		} else{
+          //log.Fatal(err)
+		context.Status(status).JSON(
+			&fiber.Map{"message" : err,
+		})
+		}	
+	}else{
+        
+		context.Status(status).JSON(
+			&fiber.Map{"message" : "Record not found",
+		})
+
+	}
+}
+
+func CheckSimpleError(err error, message string){
 	if err != nil {
         if message != ""{
           log.Fatal(message)
 		} else{
           log.Fatal(err)
 		}
-		
+		}
 	}
-}
+	
 
 func CheckErrors(context *fiber.Ctx, err error, status int , message string){
 	if err != nil {
